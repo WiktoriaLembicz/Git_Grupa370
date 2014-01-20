@@ -1,0 +1,21 @@
+# coding=utf-8
+import webapp2
+import jinja2
+import os
+
+template_dir=os.path.join(os.path.dirname(__file__),'templates')
+jinja_env=jinja2.Environment(loader=
+jinja2.FileSystemLoader(template_dir),
+                                autoescape=True,
+                                extensions=['jinja2.ext.autoescape'])
+
+
+class BaseHandler(webapp2.RequestHandler):
+    def write(self,*a,**kw):
+        self.response.out.write(*a,**kw)
+    
+    def render(self,template,**params):
+        t=jinja_env.get_template(template)
+        self.write(t.render(**params))
+        
+                
