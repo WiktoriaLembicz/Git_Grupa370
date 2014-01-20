@@ -1,0 +1,11 @@
+{% extends "szablon.html" %}
+
+{% block content %}
+	<h2>{{a.title}}</h2>
+	<img src="img?img_id={{a.key()}}" alt="no image"/>
+
+	<p>Składniki:</p>
+	<pre id="skladniki">{% autoescape false %}{{a.skladniki}}{% endautoescape %}</pre>
+	<p>Przepis:</p>
+	<pre id="przepis">{% autoescape false %}{{a.content}}{% endautoescape %}</pre>
+{% endblock %}
